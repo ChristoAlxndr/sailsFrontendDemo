@@ -56,9 +56,24 @@ module.exports = {
    * `EmployeeController.update()`
    */
   update: function (req, res) {
-    return res.json({
-      todo: 'update() is not implemented yet!'
-    });
+        if(req.method != "POST"){
+          return res.view('update');
+        }
+
+        var args = {
+            data: req.body,
+            headers: { "Content-Type": "application/json" }
+        };
+         
+        client.put(endpoint + "/" + req.body.id, args, function (data, response) {
+            // return res.view('update', {success: { message: "Record added successfully"}});
+            if(response.statusCode != "200"){
+                return res.view('update', {error:{message: response.statusMessage + ": " + data.reason}});
+            }
+
+            return res.view('update', {success:{message: "Record updated successfully"}});
+
+        })
   },
 
 
