@@ -7,7 +7,7 @@
 
 var Client = require('node-rest-client').Client;
 var client = new Client();
-var endpoint = "http://localhost:1337/employee"
+var endpoint = "http://localhost:1337/employees"
 
 module.exports = {
 
@@ -46,7 +46,7 @@ module.exports = {
     client.get(endpoint, function (data, response) {
         return res.view('read', {employees: data});
     }).on('error', function (err) {
-        return res.view('read', {error: { message: "There was an error getting the employees"}});
+        return res.view('read', {error: { message: "There was an error getting the records."}});
     });
 
   },

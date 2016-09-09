@@ -15,6 +15,7 @@
     <th>Email</th>
     <th>Home Phone</th>
     <th>Cell Phone</th>
+    <th>Username</th>
     <th>Password</th>
     <th>Active</th>
   </tr>
@@ -27,13 +28,14 @@
         <td><%= employee.email %></td>
         <td><%= employee.homePhone %></td>
         <td><%= employee.cellPhone %></td>
+        <td><%= employee.userName %></td>
         <td><%= employee.password %></td>
         <td><%= employee.active %></td>
       </tr>
     <% }) %>
   <% }else{ %>
       <tr>
-        <td colspan="8">0 records found</td>
+        <td colspan="9">0 records found</td>
       </tr>
   <% } %>
   
