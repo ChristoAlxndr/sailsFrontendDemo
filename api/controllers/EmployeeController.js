@@ -81,9 +81,23 @@ module.exports = {
    * `EmployeeController.delete()`
    */
   delete: function (req, res) {
-    return res.json({
-      todo: 'delete() is not implemented yet!'
-    });
-  }
-};
+   if(req.method != "POST"){
+          return res.view('delete');
+        }
 
+        var args = {
+            data: req.body,
+            headers: { "Content-Type": "application/json" }
+        };
+         
+        client.delete(endpoint, args, function (data, response) {
+            // return res.view('delete', {success: { message: "Record deleted successfully"}});
+            if(response.statusCode != "200"){
+                return res.view('delete', {error:{message: response.statusMessage + ": " + data.reason}});
+            }
+
+            return res.view('delete', {success:{message: "Record deleted successfully"}});
+
+        })
+  },
+};
